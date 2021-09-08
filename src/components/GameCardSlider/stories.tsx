@@ -1,11 +1,13 @@
 import { Story, Meta } from '@storybook/react/types-6-0'
-import BannerSlider, { BannerSliderProps } from '.'
+
+import { GameCardProps } from 'components/GameCard'
+import GameCardSlider from '.'
 
 import items from './mock'
 
 export default {
-  title: 'BannerSlider',
-  component: BannerSlider,
+  title: 'GameCardSlider',
+  component: GameCardSlider,
   args: { items },
   parameters: {
     layout: 'fullscreen',
@@ -15,8 +17,8 @@ export default {
   }
 } as Meta
 
-export const Default: Story<BannerSliderProps> = (args) => (
+export const Default: Story<GameCardProps[]> = (args) => (
   <div style={{ maxWidth: '130rem', margin: '0 auto' }}>
-    <BannerSlider {...args} />
+    <GameCardSlider items={args} {...args} />
   </div>
 )
