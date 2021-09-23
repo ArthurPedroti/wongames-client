@@ -10,6 +10,15 @@ import Slider, { SliderSettings } from 'components/Slider'
 
 import * as S from './styles'
 
+export type GalleryImageProps = {
+  src: string
+  label: string
+}
+
+export type GalleryProps = {
+  items: GalleryImageProps[]
+}
+
 const commonSettings: SliderSettings = {
   infinite: false,
   lazyLoad: 'ondemand',
@@ -52,15 +61,6 @@ const settings: SliderSettings = {
 const modalSettings: SliderSettings = {
   ...commonSettings,
   slidesToShow: 1
-}
-
-export type GalleryImageProps = {
-  src: string
-  label: string
-}
-
-export type GalleryProps = {
-  items: GalleryImageProps[]
 }
 
 const Gallery = ({ items }: GalleryProps) => {
