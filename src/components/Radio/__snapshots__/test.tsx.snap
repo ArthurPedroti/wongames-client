@@ -39,7 +39,8 @@ exports[`<Radio /> should render with label (white) 1`] = `
   cursor: pointer;
 }
 
-.c1:focus {
+.c1:focus,
+.c1:hover {
   box-shadow: 0 0 0.5rem #F231A5;
 }
 

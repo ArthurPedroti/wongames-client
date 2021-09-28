@@ -20,7 +20,8 @@ export const Input = styled.input`
     transition: background ${theme.transition.fast};
     outline: none;
     cursor: pointer;
-    &:focus {
+    &:focus,
+    &:hover {
       box-shadow: 0 0 0.5rem ${theme.colors.primary};
     }
     &:before {

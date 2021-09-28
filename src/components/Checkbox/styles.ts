@@ -33,7 +33,8 @@ export const Input = styled.input`
       opacity: 0;
       transition: ${theme.transition.fast};
     }
-    &:focus {
+    &:focus,
+    &:hover {
       box-shadow: 0 0 0.5rem ${theme.colors.primary};
     }
     &:checked {
