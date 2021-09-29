@@ -24,6 +24,7 @@
     ]
   },
   "dependencies": {
+    "@styled-icons/boxicons-regular": "^10.38.0",
     "@styled-icons/boxicons-solid": "^10.38.0",
     "@types/react-slick": "^0.23.5",
     "next": "11.0.1",
