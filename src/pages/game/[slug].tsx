@@ -5,12 +5,12 @@ import Game, { GameTemplateProps } from 'templates/Game'
 
 import gamesMock from 'components/GameCardSlider/mock'
 import highlightMock from 'components/Highlight/mock'
-import { QueryGames, QueryGamesVariables } from 'graphql/generated/QueryGames'
-import { QUERY_GAMES, QUERY_GAME_BY_SLUG } from 'graphql/queries/games'
+import { GetGames, GetGamesVariables } from 'graphql/generated/GetGames'
+import { GET_GAMES, GET_GAME_BY_SLUG } from 'graphql/queries/games'
 import {
-  QueryGameBySlug,
-  QueryGameBySlugVariables
-} from 'graphql/generated/QueryGameBySlug'
+  GetGameBySlug,
+  GetGameBySlugVariables
+} from 'graphql/generated/GetGameBySlug'
 import { GetStaticProps } from 'next'
 
 const apolloClient = initializeApollo()
@@ -28,8 +28,8 @@ export default function Index(props: GameTemplateProps) {
 
 // gerar em build time (/game/bla, /bame/foo ...)
 export async function getStaticPaths() {
-  const { data } = await apolloClient.query<QueryGames, QueryGamesVariables>({
-    query: QUERY_GAMES,
+  const { data } = await apolloClient.query<GetGames, GetGamesVariables>({
+    query: GET_GAMES,
     variables: { limit: 9 }
   })
 
@@ -42,10 +42,10 @@ export async function getStaticPaths() {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { data } = await apolloClient.query<
-    QueryGameBySlug,
-    QueryGameBySlugVariables
+    GetGameBySlug,
+    GetGameBySlugVariables
   >({
-    query: QUERY_GAME_BY_SLUG,
+    query: GET_GAME_BY_SLUG,
     variables: { slug: `${params?.slug}` }
   })
 
