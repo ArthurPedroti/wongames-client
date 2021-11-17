@@ -36,7 +36,7 @@ export default function Index(props: GameTemplateProps) {
 export async function getStaticPaths() {
   const { data } = await apolloClient.query<GetGames, GetGamesVariables>({
     query: GET_GAMES,
-    variables: { limit: 9 }
+    variables: { limit: 15 }
   })
 
   const paths = data.games.map(({ slug }) => ({
@@ -53,7 +53,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     GetGameBySlugVariables
   >({
     query: GET_GAME_BY_SLUG,
-    variables: { slug: `${params?.slug}` }
+    variables: { slug: `${params?.slug}` },
+    fetchPolicy: 'no-cache'
   })
 
   if (!data.games.length) {
@@ -80,8 +81,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   })
 
   return {
+    revalidate: 10,
     props: {
-      revalidate: 60,
       cover: `http://localhost:1337${game.cover?.src}`,
       gameInfo: {
         title: game.name,
