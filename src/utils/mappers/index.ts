@@ -3,6 +3,7 @@ import {
   GetHome_banners,
   GetHome_sections_popularGames_highlight
 } from 'graphql/generated/GetHome'
+import formatPrice from 'utils/format-price'
 
 export const bannerMapper = (banners: GetHome_banners[]) => {
   return banners.map((banner) => ({
@@ -46,4 +47,15 @@ export const highlightMapper = (
         alignment: highlight.alignment
       }
     : {}
+}
+
+export const cartMapper = (games: GetGames_games[] | undefined) => {
+  return games
+    ? games.map((game) => ({
+        id: game.id,
+        img: `http://localhost:1337${game.cover?.url}`,
+        title: game.name,
+        price: formatPrice(game.price)
+      }))
+    : []
 }
