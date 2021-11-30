@@ -63,6 +63,14 @@ export const Group = styled.div`
   width: 100%;
 `
 
+export const Remove = styled.div`
+  ${({ theme }) => css`
+    cursor: pointer;
+    color: ${theme.colors.primary};
+    font-size: ${theme.font.sizes.small};
+  `}
+`
+
 export const Price = styled.div`
   ${({ theme }) => css`
     color: ${theme.colors.white};
