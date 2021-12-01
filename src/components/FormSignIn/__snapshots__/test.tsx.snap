@@ -240,7 +240,9 @@ exports[`<FormSignIn /> should render the form 1`] = `
           class="c7 c8"
         >
           <span>
-            Sign in now
+            <span>
+              Sign in now
+            </span>
           </span>
         </button>
         <div
