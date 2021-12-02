@@ -13,7 +13,7 @@ import CartIcon from 'components/CartIcon'
 import UserDropdown from 'components/UserDropdown'
 
 export type MenuProps = {
-  username?: string
+  username?: string | null
 }
 
 const Menu = ({ username }: MenuProps) => {
@@ -96,7 +96,7 @@ const Menu = ({ username }: MenuProps) => {
         </S.MenuNav>
         {!username && (
           <S.RegisterBox>
-            <Link href="/ign-in" passHref>
+            <Link href="/sign-in" passHref>
               <Button fullWidth size="large" as="a">
                 Log in now
               </Button>
