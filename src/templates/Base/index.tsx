@@ -11,13 +11,13 @@ export type BaseProps = {
 }
 
 const Base = ({ children }: BaseProps) => {
-  const [session] = useSession()
+  const [session, loading] = useSession()
 
   return (
     <section>
       <S.Wrapper>
         <Container>
-          <Menu username={session?.user?.name} />
+          <Menu username={session?.user?.name} loading={loading} />
         </Container>
 
         <S.Content>{children}</S.Content>
