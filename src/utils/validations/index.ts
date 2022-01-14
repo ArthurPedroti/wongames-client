@@ -1,7 +1,7 @@
 import { UsersPermissionsRegisterInput } from 'graphql/generated/globalTypes'
 import Joi from 'joi'
 
-const fieldValidations = {
+const fieldsValidations = {
   username: Joi.string().min(5).required(),
   email: Joi.string()
     .email({ tlds: { allow: false } })
@@ -32,7 +32,7 @@ function getFieldErrors(objError: Joi.ValidationResult) {
 }
 
 export function signUpValidate(values: UsersPermissionsRegisterInput) {
-  const schema = Joi.object(fieldValidations)
+  const schema = Joi.object(fieldsValidations)
 
   return getFieldErrors(schema.validate(values, { abortEarly: false }))
 }
@@ -40,7 +40,27 @@ export function signUpValidate(values: UsersPermissionsRegisterInput) {
 export function signInValidate(
   values: Omit<UsersPermissionsRegisterInput, 'username'>
 ) {
-  const { email, password } = fieldValidations
+  const { email, password } = fieldsValidations
   const schema = Joi.object({ email, password })
+  return getFieldErrors(schema.validate(values, { abortEarly: false }))
+}
+
+type ForgotValidateParams = Pick<UsersPermissionsRegisterInput, 'email'>
+export function forgotValidate(values: ForgotValidateParams) {
+  const { email } = fieldsValidations
+  const schema = Joi.object({ email })
+
+  return getFieldErrors(schema.validate(values, { abortEarly: false }))
+}
+
+type ResetValidateParams = {
+  password: string
+  confirm_password: string
+}
+
+export function resetValidate(values: ResetValidateParams) {
+  const { password, confirm_password } = fieldsValidations
+  const schema = Joi.object({ password, confirm_password })
+
   return getFieldErrors(schema.validate(values, { abortEarly: false }))
 }
