@@ -18,7 +18,7 @@ const FormResetPassword = () => {
   })
   const [loading, setLoading] = useState(false)
   const routes = useRouter()
-  const { push, query } = routes
+  const { query } = routes
 
   const handleInput = (field: string, value: string) => {
     setValues((oldValues) => ({ ...oldValues, [field]: value }))
@@ -38,19 +38,33 @@ const FormResetPassword = () => {
 
     setFieldError({})
 
-    const result = await signIn('credentials', {
-      redirect: false,
-      ...values,
-      callbackUrl: `${window.location.origin}${query?.callbackUrl || ''}`
-    })
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/auth/reset-password`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          password: values.password,
+          passwordConfirmation: values.confirm_password,
+          code: query.code
+        })
+      }
+    )
 
-    if (result?.url) {
-      return push(result.url)
+    const data = await response.json()
+
+    if (data.error) {
+      setFormError(data.message[0].messages[0].message)
+      setLoading(false)
+    } else {
+      signIn('credentials', {
+        email: data.user.email,
+        password: values.password,
+        callbackUrl: '/'
+      })
     }
-
-    setLoading(false)
-
-    setFormError('password or confirm password is invalid')
   }
 
   return (
