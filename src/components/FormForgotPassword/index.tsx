@@ -4,6 +4,7 @@ import {
   ErrorOutline
 } from '@styled-icons/material-outlined'
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 
 import Button from 'components/Button'
 import TextField from 'components/TextField'
@@ -17,11 +18,12 @@ import {
 import { FieldErrors, forgotValidate } from 'utils/validations'
 
 const FormForgotPassword = () => {
+  const { query } = useRouter()
   const [success, setSuccess] = useState(false)
   const [formError, setFormError] = useState('')
   const [fieldError, setFieldError] = useState<FieldErrors>({})
   const [values, setValues] = useState({
-    email: ''
+    email: (query.email as string) || ''
   })
   const [loading, setLoading] = useState(false)
 
@@ -84,6 +86,7 @@ const FormForgotPassword = () => {
               placeholder="Email"
               type="text"
               error={fieldError?.email}
+              initialValue={query.email as string}
               onInputChange={(v) => handleInput('email', v)}
               icon={<Email />}
             />
