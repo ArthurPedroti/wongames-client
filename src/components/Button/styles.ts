@@ -27,7 +27,6 @@ const wrapperModifiers = {
   withIcon: (theme: DefaultTheme) => css`
     svg {
       width: 1.5rem;
-
       & + span {
         margin-left: ${theme.spacings.xxsmall};
       }
@@ -63,6 +62,9 @@ export const Wrapper = styled.button<WrapperProps>`
     font-family: ${theme.font.family};
     position: relative;
     text-decoration: none;
+    &:focus {
+      outline: 1px dashed;
+    }
 
     background-image: linear-gradient(180deg, #ff5f5f 0%, #f062c0 100%);
     z-index: 1;

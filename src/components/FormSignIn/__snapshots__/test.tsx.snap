@@ -37,6 +37,10 @@ exports[`<FormSignIn /> should render the form 1`] = `
   width: 100%;
 }
 
+.c8:focus {
+  outline: 1px dashed;
+}
+
 .c8::before {
   position: absolute;
   content: '';
