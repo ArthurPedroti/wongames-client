@@ -23,14 +23,16 @@
   },
   "lint-staged": {
     "src/**/*": [
-      "yarn lint --fix",
-      "yarn test --findRelatedTests --bail"
+      "yarn lint --fix"
     ]
   },
   "dependencies": {
     "@apollo/client": "^3.4.15",
+    "@stripe/react-stripe-js": "^1.7.0",
+    "@stripe/stripe-js": "^1.23.0",
     "@styled-icons/boxicons-regular": "^10.38.0",
     "@styled-icons/boxicons-solid": "^10.38.0",
+    "caniuse-lite": "^1.0.30001342",
     "dotenv": "^14.2.0",
     "graphql": "^15.6.1",
     "joi": "^17.5.0",
