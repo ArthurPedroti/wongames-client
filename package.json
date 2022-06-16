@@ -82,7 +82,7 @@
     "lint-staged": "^11.0.1",
     "msw": "^0.36.4",
     "node-fetch": "^2.6.1",
-    "plop": "^2.7.4",
+    "plop": "^3.1.1",
     "prettier": "^2.3.2",
     "storybook-addon-next-router": "^3.0.5",
     "typescript": "^4.3.5"
